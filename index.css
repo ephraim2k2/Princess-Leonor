@@ -137,8 +137,12 @@ body {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-family: var(--font-sans);
+  white-space: nowrap;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .btn-primary:hover {
@@ -664,8 +668,20 @@ footer {
   }
 
   .btn-primary {
-    padding: 10px 20px;
+    padding: 12px 22px;
     font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  .nav-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    gap: 4px;
+  }
+
+  .nav-btn svg {
+    width: 12px;
+    height: 12px;
   }
 
   .hero-title {
