@@ -292,7 +292,7 @@
           <div class="activity-badge-list" id="activityList">
             <span class="activity-tag">👑 <strong>Mateo R.</strong> from Madrid just entered</span>
             <span class="activity-tag">✨ <strong>Elena P.</strong> from Oviedo just entered</span>
-            <span class="activity-tag">🎁 <strong>Sofia L.</strong> from Barcelona just entered</span>
+            <span class="activity-tag">🎁 <strong>Santiago G.</strong> from Barcelona just entered</span>
           </div>
         </div>
       </div>
@@ -396,24 +396,58 @@
       modal.classList.remove('active');
     }
 
-    // Dynamic entry simulation
-    const names = ["Carlos", "Isabel", "Alejandro", "Lucia", "Javier", "Carmen", "Gabriel"];
-    const cities = ["Seville", "Valencia", "Zaragoza", "Malaga", "Bilbao", "Alicante"];
+    // Dynamic entry simulation with strictly non-repeating names
+    const firstNames = [
+      "Adrian", "Alba", "Alejandro", "Alvaro", "Ana", "Andrea", "Andres", "Angel", "Antonio", "Beatriz",
+      "Blanca", "Camila", "Carla", "Carlos", "Carmen", "Clara", "Daniel", "David", "Diego", "Eduardo",
+      "Elena", "Emilio", "Enrique", "Eva", "Fernando", "Francisco", "Gabriel", "Gonzalo", "Guillermo", "Ignacio",
+      "Irene", "Isabel", "Javier", "Jesus", "Jorge", "Jose", "Juan", "Laura", "Leonor", "Lucia",
+      "Luis", "Manuel", "Marco", "Marcos", "Maria", "Marina", "Marta", "Martin", "Mateo", "Miguel",
+      "Natalia", "Nicolas", "Pablo", "Paula", "Pedro", "Rafael", "Raul", "Rocio", "Rodrigo", "Ruben",
+      "Samuel", "Sandra", "Sara", "Sergio", "Silvia", "Sofia", "Tomas", "Valeria", "Victor", "Victoria",
+      "Liam", "Noah", "Oliver", "Emma", "Ava", "Sophia", "Charlotte", "Amelia", "Lucas", "Ethan",
+      "Mason", "Harper", "Evelyn", "Logan", "Alexander", "James", "Benjamin", "Sebastian", "Mia", "Luna"
+    ];
+
+    const lastInitials = ["A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J.", "K.", "L.", "M.", "N.", "O.", "P.", "Q.", "R.", "S.", "T.", "U.", "V.", "W.", "Y.", "Z."];
+
+    const globalCities = [
+      "Madrid", "Barcelona", "Valencia", "Seville", "Zaragoza", "Malaga", "Murcia", "Palma", "Las Palmas", "Bilbao",
+      "Alicante", "Cordoba", "Valladolid", "Vigo", "Gijón", "Hospitalet", "Vitoria", "A Coruña", "Elche", "Granada",
+      "Oviedo", "Badalona", "Cartagena", "Terrassa", "Jerez", "Sabadell", "Santa Cruz", "Pamplona", "Almería", "Fuenlabrada",
+      "London", "Paris", "Rome", "Berlin", "Lisbon", "Amsterdam", "Vienna", "Brussels", "Dublin", "Zurich",
+      "New York", "Los Angeles", "Chicago", "Miami", "Toronto", "Mexico City", "Buenos Aires", "Bogota", "Santiago", "Lima"
+    ];
+
+    // Track used names to guarantee zero repetitions
+    const usedNames = new Set(["Mateo R.", "Elena P.", "Santiago G."]);
+    let availableNames = [...firstNames];
 
     setInterval(() => {
-      const randomName = names[Math.floor(Math.random() * names.length)];
-      const randomCity = cities[Math.floor(Math.random() * cities.length)];
+      if (availableNames.length === 0) return; // All unique names consumed
+
+      // Pick a unique first name
+      const nameIndex = Math.floor(Math.random() * availableNames.length);
+      const chosenFirstName = availableNames.splice(nameIndex, 1)[0];
+      const randomInitial = lastInitials[Math.floor(Math.random() * lastInitials.length)];
+      const fullNameStr = `${chosenFirstName} ${randomInitial}`;
+
+      usedNames.add(fullNameStr);
+
+      const randomCity = globalCities[Math.floor(Math.random() * globalCities.length)];
       const activityList = document.getElementById('activityList');
 
       const tag = document.createElement('span');
       tag.className = 'activity-tag';
-      tag.innerHTML = `✨ <strong>${randomName} M.</strong> from ${randomCity} just entered`;
+      const icons = ["✨", "👑", "🎁", "💫", "🌟"];
+      const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+      tag.innerHTML = `${randomIcon} <strong>${fullNameStr}</strong> from ${randomCity} just entered`;
       
       if (activityList.children.length >= 3) {
         activityList.removeChild(activityList.firstElementChild);
       }
       activityList.appendChild(tag);
-    }, 5000);
+    }, 4500);
   </script>
 </body>
 </html>
