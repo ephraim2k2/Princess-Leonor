@@ -61,7 +61,7 @@ body {
   padding: 0 24px;
 }
 
-/* Announcement Banner */
+/* Announcement Banner Ticker */
 .announcement-banner {
   background: linear-gradient(135deg, #1e1b4b 0%, #0B132B 100%);
   border-bottom: 1px solid var(--glass-border);
@@ -69,48 +69,79 @@ body {
   padding: 10px 0;
   font-size: 0.88rem;
   position: relative;
+  overflow: hidden;
   z-index: 1001;
 }
 
-.banner-container {
+.banner-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
   display: flex;
+}
+
+.banner-ticker {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  position: relative;
-  padding-right: 40px;
+  gap: 48px;
+  animation: scrollBanner 28s linear infinite;
 }
 
-.banner-icon {
-  font-size: 1.1rem;
+.banner-ticker:hover {
+  animation-play-state: paused;
 }
 
-.banner-text {
-  line-height: 1.4;
+.banner-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--text-secondary);
 }
 
-.banner-text strong {
+.banner-item strong {
   color: var(--accent-gold);
+}
+
+.banner-item a {
+  color: var(--light-gold);
+  text-decoration: underline;
 }
 
 .banner-close {
   position: absolute;
-  right: 0;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
-  border: none;
+  background: rgba(11, 19, 43, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
   color: var(--text-secondary);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  z-index: 1002;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .banner-close:hover {
   color: #FFFFFF;
+  border-color: var(--accent-gold);
+  background: rgba(28, 37, 65, 1);
+}
+
+@keyframes scrollBanner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Header Navbar */
