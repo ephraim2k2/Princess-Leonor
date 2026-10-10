@@ -17,8 +17,18 @@
       <stop offset="100%" stop-color="#AA771C" />
     </linearGradient>
   </svg>
-</head>
 <body>
+
+  <!-- Site Announcement Banner -->
+  <div class="announcement-banner" id="siteAnnouncement">
+    <div class="container banner-container">
+      <span class="banner-icon">📢</span>
+      <span class="banner-text">
+        <strong> Notice:</strong> System performance upgrades will take place this Sunday from 02:00 to 04:00 UTC. Registrations remain active.
+      </span>
+      <button class="banner-close" onclick="dismissBanner()" aria-label="Dismiss announcement">&times;</button>
+    </div>
+  </div>
 
   <!-- Navigation Bar -->
   <nav class="navbar" id="navbar">
@@ -382,6 +392,15 @@
   </div>
 
   <script>
+    // Banner Dismissal
+    function dismissBanner() {
+      const banner = document.getElementById('siteAnnouncement');
+      if (banner) {
+        banner.style.display = 'none';
+        document.body.classList.remove('has-banner');
+      }
+    }
+
     // Live Countdown Timer logic
     function updateCountdown() {
       const now = new Date().getTime();

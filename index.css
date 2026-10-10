@@ -61,11 +61,61 @@ body {
   padding: 0 24px;
 }
 
+/* Announcement Banner */
+.announcement-banner {
+  background: linear-gradient(135deg, #1e1b4b 0%, #0B132B 100%);
+  border-bottom: 1px solid var(--glass-border);
+  color: #F8FAFC;
+  padding: 10px 0;
+  font-size: 0.88rem;
+  position: relative;
+  z-index: 1001;
+}
+
+.banner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  padding-right: 40px;
+}
+
+.banner-icon {
+  font-size: 1.1rem;
+}
+
+.banner-text {
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.banner-text strong {
+  color: var(--accent-gold);
+}
+
+.banner-close {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.banner-close:hover {
+  color: #FFFFFF;
+}
+
 /* Header Navbar */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   z-index: 1000;
   padding: 20px 0;
@@ -153,10 +203,11 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
   display: flex;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 40px;
+  padding-bottom: 60px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
